@@ -2,6 +2,7 @@ import React from "react";
 import "./ChatGroups.scss";
 import { GroupCard } from "../../UI/GroupCard/GroupCard";
 import { FaUsers } from "react-icons/fa";
+import { CreateRoomButton } from "../../UI/CreateRoomButton/CreateRoomButton";
 
 export const ChatGroups = () => {
   return (
@@ -10,20 +11,25 @@ export const ChatGroups = () => {
         <FaUsers />
         <h3>Groups</h3>
       </div>
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
-      <GroupCard />
+      <div className="chatGroups-body">
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+      </div>
+      <div className="chatGroups-footer">
+        <CreateRoomButton />
+      </div>
     </div>
   );
 };

@@ -5,12 +5,11 @@
     outline: solid 1px red;
     height: 100%;
     width: 650px;
-    padding: 1em;
+    padding: 0.5em;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5em;
-    overflow-y: scroll;
 
     .chatGroups-Header{
         outline: solid 1px red;
@@ -20,5 +19,25 @@
         gap: 0.5em;
         width: 100%;
         padding: 1em;
-    }    
+    } 
+    
+    .chatGroups-body{
+        outline: solid 1px red;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.40em;
+        overflow-y: scroll;
+        padding: 0 0.5em;
+    }
+
+    .chatGroups-footer{
+        outline: solid 1px red;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        padding: 1em;
+    }
 }
