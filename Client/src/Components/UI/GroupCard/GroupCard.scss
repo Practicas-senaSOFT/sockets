@@ -1,12 +1,12 @@
 .groupCard-component {
   display: flex;
   width: 100%;
-  border-radius: 8px;
-  outline: solid 1px red;
   justify-content: space-between;
   padding: 0.5em 1em;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  align-items: center;
+  background-color: #FFf;
 
   .groupCard-image {
     width: 50px;
@@ -22,12 +22,23 @@
 
   .groupCard-status {
     display: flex;
-    outline: solid 1px red;
     align-items: center;
     gap: 0.5em;
   }
 }
 
 .groupCard-component:hover{
-  transform: scale(102%);
+  background: rgba(240,240,240,1);
+}
+
+.sendGroup-content{
+  outline: solid 1px red;
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  gap: 0.5em;
+
 }

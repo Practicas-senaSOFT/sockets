@@ -5,8 +5,6 @@ socket.on("connect", () => {
   console.log(socket.id);
 });
 
-socket.emit("update item","test", "public", (response) => {
-  console.log(response.status); // ok
-});     
+   
 
 export default socket;

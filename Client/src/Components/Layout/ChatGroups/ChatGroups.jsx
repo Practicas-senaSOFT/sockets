@@ -27,9 +27,8 @@ export const ChatGroups = () => {
         <GroupCard />
         <GroupCard />
       </div>
-      <div className="chatGroups-footer">
-        <CreateRoomButton />
-      </div>
+
+      <CreateRoomButton />
     </div>
   );
 };
