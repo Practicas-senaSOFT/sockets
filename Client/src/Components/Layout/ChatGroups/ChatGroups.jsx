@@ -12,7 +12,7 @@ export const ChatGroups = () => {
         <h3 title="header">Groups</h3>
       </div>
       <div className="chatGroups-body">
-        <GroupCard />
+        <GroupCard  status="private"/>
         <GroupCard />
         <GroupCard />
         <GroupCard />

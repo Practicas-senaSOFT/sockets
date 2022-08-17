@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   GroupColor,
   Overlay,
@@ -7,25 +7,47 @@ import "./GroupCard.scss";
 import socket from "../../../WebSockets";
 
 export const GroupCard = ({
-  name = "Majo",
-  status = "public",
+  name = "RoomName",
   password = "",
   usersConnected = "99",
+  status = "Private",
 }) => {
   const [showPopUp, setShowPopUp] = React.useState(false);
+
   const changePopUp = () => {
     setShowPopUp(!showPopUp);
   };
+
+  useEffect(() => {}, [showPopUp]);
 
   const [userName, setUserName] = React.useState("");
 
   const room = 13212121;
 
+  const [inputPassword, setInputPassword] = React.useState("");
+
+  const joinPrivateRoom = () => {
+    try {
+      if (status === "Private") {
+        if (inputPassword === inputPassword) {
+          socket.emit("joinRoom", room);
+        }
+        alert("Wrong Password");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const joinRoom = () => {
-    if (userName !== "") {
-      socket.emit("joinRoom", room, (Response) => {
-        console.log(Response);
+    try {
+      socket.emit("joinRoom", userName, room, (response) => {
+        if (response.status === "success") {
+          console.log("success");
+        }
       });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -38,11 +60,10 @@ export const GroupCard = ({
             alt={"groupLogo"}
           />
         </div>
-        <p>{name}</p>
-        <p>{status}</p>
+        <p resource="text">{name}</p>
         <div className="groupCard-status">
           <GroupColor color="green" />
-          <p>{usersConnected} / 100</p>
+          <p title="users">{usersConnected} / 100</p>
         </div>
       </div>
       {showPopUp && (
@@ -53,6 +74,13 @@ export const GroupCard = ({
               placeholder="UserName"
               onChange={(e) => setUserName(e.target.value)}
             />
+            {status === "private" && (
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            )}
             <button onClick={() => joinRoom()}>go to Room</button>
           </div>
         </Overlay>

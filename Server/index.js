@@ -23,9 +23,9 @@ io.on("connection", (socket) => {
     console.log("user disconnected", socket.id);
   });
 
-  socket.on("joinRoom", (data , callback ) => {
-    socket.join(data);
-    console.log(`user ${socket.id} joined room ${data}`);
+  socket.on("joinRoom", (userName , room , callback ) => {
+    
+    console.log(`user ${userName} joined room ${room}`);
     callback({
         status: "success",
     })

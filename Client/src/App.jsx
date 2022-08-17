@@ -1,17 +1,22 @@
 import { ChatGroups } from "./Components/Layout/ChatGroups/ChatGroups";
 import { ChatRoom } from "./Components/Layout/ChatRoom/ChatRoom";
-import { StartPage } from "./Components/Page/StartPage/startPage";
 import "./Normalize.css";
-import React from "react";
+import React , { useContext } from "react";
+import { userContext, UserProvider } from "./UserProvider";
 
 function App() {
+
+  const user = useContext(userContext);
+  console.log(user);
+
   const [chatStatus, setChatStatus] = React.useState(true);
   return (
-    <div className="app-content">
-      <ChatGroups />
-      {chatStatus && 
-       <ChatRoom />}
-    </div>
+    <UserProvider>
+      <div className="app-content">
+        <ChatGroups />
+        {chatStatus && <ChatRoom />}
+      </div>
+    </UserProvider>
   );
 }
 
