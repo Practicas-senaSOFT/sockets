@@ -6,7 +6,11 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   align-items: center;
-  background-color: #FFf;
+  background-color: #fff;
+
+  &:hover {
+    background: rgba(240, 240, 240, 1);
+  }
 
   .groupCard-image {
     width: 50px;
@@ -27,12 +31,7 @@
   }
 }
 
-.groupCard-component:hover{
-  background: rgba(240,240,240,1);
-}
-
-.sendGroup-content{
-  outline: solid 1px red;
+.sendGroup-content {
   display: flex;
   padding: 1em;
   flex-direction: column;
@@ -40,5 +39,4 @@
   justify-content: center;
   border-radius: 5px;
   gap: 0.5em;
-
 }

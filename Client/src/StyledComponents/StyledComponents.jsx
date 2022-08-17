@@ -1,11 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const GroupColor = styled.div`
-  background-color: ${props => props.color};
-  width: 20px;
-  height: 20px;
-  border-radius: 255px;
-  outline: 1px solid #000;`
+  background-color: ${(props) => props.color};
+  width: 15px;
+  height: 15px;
+  border-radius: 255px;`;
 
 export const Overlay = styled.div`
   position: fixed;
@@ -17,11 +16,11 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const PopUp = styled.div`
   width: 500px;
-  height: ${props => props.height};
+  height: ${(props) => props.height};
   background-color: #fff;
   border-radius: 5px;
   display: flex;
@@ -29,6 +28,5 @@ export const PopUp = styled.div`
   padding: 1em;
   gap: 1em;
   outline: 1px solid #000;
-  transition : all 0.5s ease-in-out;`
-  
-  
+  transition: all 0.5s ease-in-out;
+`;

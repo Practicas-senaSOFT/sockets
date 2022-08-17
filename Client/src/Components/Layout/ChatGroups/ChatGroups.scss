@@ -1,6 +1,5 @@
 @import '../../../Sass/Variables.scss';
 
-
 .chatGroups-content{
     outline: solid 1px red;
     height: 100%;
@@ -17,6 +16,18 @@
         gap: 0.5em;
         width: 100%;
         padding: 1em;
+        background-color: $primary-color;
+
+        .header-icon{
+            width: 30px;
+            height: 30px;
+            color: $secondary-color;
+        }
+
+        h3[title='header']{
+            font-family: poppins;
+            color: $secondary-color;
+        }
     } 
     
     .chatGroups-body{

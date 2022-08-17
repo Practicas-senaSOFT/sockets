@@ -22,7 +22,7 @@ export const CreateRoomButton = () => {
   return (
     <>
       <button onClick={() => changePopUp()} name="create">
-        Create a Room
+        Create Room
       </button>
       {showPopUp && <Overlay>
         <PopUp height={height}>

@@ -1,7 +1,21 @@
+@import '../../../Sass/Variables.scss';
+
 button[name='create']{
     width: 100%;
     height: 100px;
     cursor: pointer;
+    color: $secondary-color;
+    background-color: $primary-color;
+    border: none;
+    font-family: poppins;
+    font-size: 15px;
+    font-weight: bolder;
+    transition: .9s all ease;
+    text-transform: uppercase;
+
+    &:hover{
+        filter: none;
+    }
 }
 
 .popUp-create-content{

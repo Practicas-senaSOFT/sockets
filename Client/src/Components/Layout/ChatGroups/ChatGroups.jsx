@@ -8,8 +8,8 @@ export const ChatGroups = () => {
   return (
     <div className="chatGroups-content">
       <div className="chatGroups-Header">
-        <FaUsers />
-        <h3>Groups</h3>
+        <FaUsers className="header-icon" />
+        <h3 title="header">Groups</h3>
       </div>
       <div className="chatGroups-body">
         <GroupCard />
