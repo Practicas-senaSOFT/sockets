@@ -4,7 +4,8 @@ import { GroupCard } from "../../UI/GroupCard/GroupCard";
 import { FaUsers } from "react-icons/fa";
 import { CreateRoomButton } from "../../UI/CreateRoomButton/CreateRoomButton";
 
-export const ChatGroups = () => {
+export const ChatGroups = ({ event }) => {
+
   return (
     <div className="chatGroups-content">
       <div className="chatGroups-Header">
@@ -12,7 +13,7 @@ export const ChatGroups = () => {
         <h3 title="header">Groups</h3>
       </div>
       <div className="chatGroups-body">
-        <GroupCard  status="private"/>
+        <GroupCard status="private" />
         <GroupCard />
         <GroupCard />
         <GroupCard />

@@ -18,8 +18,6 @@ export const GroupCard = ({
     setShowPopUp(!showPopUp);
   };
 
-  useEffect(() => {}, [showPopUp]);
-
   const [userName, setUserName] = React.useState("");
 
   const room = 13212121;
@@ -39,11 +37,22 @@ export const GroupCard = ({
     }
   };
 
+  const saveContext = (data) => {
+    localStorage.setItem("userData", JSON.stringify(data));
+    changePopUp();
+  };
+
+
   const joinRoom = () => {
     try {
       socket.emit("joinRoom", userName, room, (response) => {
         if (response.status === "success") {
           console.log("success");
+          let data = {
+            room: room,
+            userName: userName,
+          };
+          saveContext(data);
         }
       });
     } catch (error) {
@@ -62,7 +71,7 @@ export const GroupCard = ({
         </div>
         <p resource="text">{name}</p>
         <div className="groupCard-status">
-          <GroupColor color="green" />
+          <GroupColor color="#37F92A" />
           <p title="users">{usersConnected} / 100</p>
         </div>
       </div>
@@ -72,16 +81,16 @@ export const GroupCard = ({
             <input
               type="text"
               placeholder="UserName"
-              onChange={(e) => setUserName(e.target.value)}
+              
             />
             {status === "private" && (
               <input
                 type="password"
                 placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setInputPassword(e.target.value)}
               />
             )}
-            <button onClick={() => joinRoom()}>go to Room</button>
+            <button>go to Room</button>
           </div>
         </Overlay>
       )}

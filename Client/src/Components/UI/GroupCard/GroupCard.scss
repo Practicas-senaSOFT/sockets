@@ -1,3 +1,5 @@
+@import '../../../Sass/Variables.scss';
+
 .groupCard-component {
   display: flex;
   width: 100%;
@@ -13,7 +15,8 @@
   }
 
   p[resource="text"]{
-    font-family: poppins;
+   @extend %text-props;
+   color: $quaternary-color;
   }
 
   .groupCard-image {
@@ -34,9 +37,9 @@
     gap: 0.5em;
     
     p[title="users"]{
-      font-family: poppins;
-      font-size: 15px;
-      letter-spacing: -1px;
+      @extend %text-props;
+      letter-spacing: -1.5px;
+      color: $quaternary-color;
     }
   }
 }

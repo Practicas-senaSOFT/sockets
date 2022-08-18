@@ -23,14 +23,12 @@ io.on("connection", (socket) => {
     console.log("user disconnected", socket.id);
   });
 
-  socket.on("joinRoom", (userName , room , callback ) => {
-    
+  socket.on("joinRoom", (userName, room, callback) => {
     console.log(`user ${userName} joined room ${room}`);
     callback({
-        status: "success",
-    })
-    
-  })
+      status: "success"
+    });
+  });
 });
 
 server.listen(port, () => {
