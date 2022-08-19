@@ -23,11 +23,16 @@ io.on("connection", (socket) => {
     console.log("user disconnected", socket.id);
   });
 
-  socket.on("joinRoom", (userName, room, callback) => {
-    console.log(`user ${userName} joined room ${room}`);
+  socket.on("joinRoom", (userName, room, roomName , users,  callback) => {
+    console.log(`user ${userName} joined room ${roomName} and count users ${users} : roomID ${room}`);
     callback({
       status: "success"
     });
+  });
+
+  socket.on("message", (data) => {
+    console.log(data);
+    socket.to(data.room).emit("devolucion",data );
   });
 });
 

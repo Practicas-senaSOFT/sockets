@@ -2,7 +2,7 @@
 
 button[name='create']{
     width: 100%;
-    height: 100px;
+    min-height: 51px;
     cursor: pointer;
     color: $secondary-color;
     background-color: $primary-color;
