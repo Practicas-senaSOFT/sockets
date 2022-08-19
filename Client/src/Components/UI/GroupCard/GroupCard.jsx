@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import {
   GroupColor,
   Overlay,
@@ -24,16 +24,10 @@ export const GroupCard = ({
   const [userName, setUserName] = React.useState("");
   const [inputPassword, setInputPassword] = React.useState("");
 
-  const joinPrivateRoom = () => {
-    try {
-      if (status === "Private") {
-        if (inputPassword === inputPassword) {
-          socket.emit("joinRoom", room);
-        }
-        alert("Wrong Password");
-      }
-    } catch (error) {
-      console.log(error);
+  const sendEvent = (event) => {
+    let charCode = event.keyCode;
+    if (charCode === 13) {
+      joinRoom();
     }
   };
 
@@ -88,6 +82,7 @@ export const GroupCard = ({
                 autoFocus
                 placeholder="UserName"
                 onChange={(e) => setUserName(e.target.value)}
+                onKeyUp={sendEvent}
               />
               {status === "private" && (
                 <input
@@ -98,7 +93,7 @@ export const GroupCard = ({
               )}
             </div>
 
-            <button onClick={joinRoom}>go to Room</button>
+            <button onClick={joinRoom} >go to Room</button>
           </div>
         </Overlay>
       )}

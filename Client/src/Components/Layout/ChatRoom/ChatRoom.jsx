@@ -3,24 +3,28 @@ import "./ChatRoom.scss";
 import { IoMdSend } from "react-icons/io";
 import socket from "../../../WebSockets";
 import UserContext from "../../../UserProvider";
-import { Socket } from "socket.io-client";
+import { v4 as uuid } from "uuid";
 
 export const ChatRoom = () => {
   const { user } = React.useContext(UserContext);
 
-  const [chatLoad, setChatLoad] = React.useState(false);
-
-  React.useEffect(() => {
-    if (user.room !== -1) {
-      setChatLoad(true);
-    }
-  }, [user]);
+  const [chatLoad, setChatLoad] = React.useState(true);
 
   const [message, setMessage] = React.useState("");
 
-  const sendMessage = async () => {
+  const sendEvent = (event) => {
+    let charCode = event.keyCode;
+    if (charCode === 13) {
+      sendMessage();
+    }
+  };
+  
+  const sendMessage = () => {
     if (message.trim() !== "") {
+      const uniqueId = uuid();
+      const smallId = uniqueId.slice(0, 8);
       let data = {
+        id: smallId,
         user: user.name,
         message: message,
         room: user.room,
@@ -29,19 +33,8 @@ export const ChatRoom = () => {
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-      try {
-        await socket.emit("sendMessage", data);
-        setMessage("");
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  const sendEvent = (event) => {
-    let charCode = event.keyCode;
-    if (charCode === 13) {
-      sendMessage();
+      socket.emit("sendMessage", data);
+      setMessage("");
     }
   };
 
@@ -73,7 +66,7 @@ export const ChatRoom = () => {
               value={message}
               onKeyDown={sendEvent}
             />
-            <IoMdSend onClick={sendMessage} className="send-icon" />
+            <IoMdSend onClick={() => sendMessage()} className="send-icon" />
           </div>
         </div>
       )}

@@ -17,23 +17,16 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("user Connected", socket.id);
-
   socket.on("disconnect", () => {
-    console.log("user disconnected", socket.id);
   });
 
   socket.on("createRoom", (data, callback) => {
     callback({
       status: "Room Created successfully",
     });
-    console.log(data);
   });
 
   socket.on("joinRoom", (data, callback) => {
-    console.log(
-      `user ${data.userName} joined room ${data.roomName} and count users ${data.users} : roomID ${data.room}`
-    );
     callback({
       status: "success",
     });
@@ -41,9 +34,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("sendMessage", (data) => {
-    console.log(data);
-    
-    socket.to(data.room).emit("received", data);
+    socket.to(data.room).emit("received" , data);
   });
 });
 
