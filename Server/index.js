@@ -23,16 +23,27 @@ io.on("connection", (socket) => {
     console.log("user disconnected", socket.id);
   });
 
-  socket.on("joinRoom", (userName, room, roomName , users,  callback) => {
-    console.log(`user ${userName} joined room ${roomName} and count users ${users} : roomID ${room}`);
+  socket.on("createRoom", (data, callback) => {
     callback({
-      status: "success"
+      status: "Room Created successfully",
     });
+    console.log(data);
   });
 
-  socket.on("message", (data) => {
+  socket.on("joinRoom", (data, callback) => {
+    console.log(
+      `user ${data.userName} joined room ${data.roomName} and count users ${data.users} : roomID ${data.room}`
+    );
+    callback({
+      status: "success",
+    });
+    socket.join(data.room);
+  });
+
+  socket.on("sendMessage", (data) => {
     console.log(data);
-    socket.to(data.room).emit("devolucion",data );
+    
+    socket.to(data.room).emit("received", data);
   });
 });
 

@@ -1,26 +1,35 @@
-@import '../../../Sass/Variables.scss';
+@import "../../../Sass/Variables.scss";
 
-button[name='create']{
-    width: 100%;
-    min-height: 51px;
+button[name="create"] {
+  @extend %button-props;
+}
+.createForm-header {
+  @extend %modal-header;
+
+  .header-icon{
+    color: $primary-color;
     cursor: pointer;
-    color: $secondary-color;
-    background-color: $primary-color;
-    border: none;
-    font-family: poppins;
-    font-size: 15px;
-    font-weight: bolder;
-    transition: .9s all ease;
-    text-transform: uppercase;
-
-    &:hover{
-        filter: none;
-    }
+  }
 }
 
-.popUp-create-content{
-    outline: solid 1px red;
-    width: 400px;
-    height: 300px;
+.createForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em;
+  gap: 0.5em;
 
+  input {
+    @extend %input-props;
+  }
+
+  select {
+    @extend %input-props;
+  }
+}
+
+.popUp-create-content {
+  outline: solid 1px red;
+  width: 400px;
+  height: 300px;
 }

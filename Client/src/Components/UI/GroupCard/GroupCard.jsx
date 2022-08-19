@@ -6,13 +6,14 @@ import {
 import "./GroupCard.scss";
 import socket from "../../../WebSockets";
 import UserContext from "../../../UserProvider";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export const GroupCard = ({
   password = "",
   name = "RoomName",
   usersConnected = "99",
-  status = "Private",
-}) => {
+    status = "Private",
+  }) => {
   const [showPopUp, setShowPopUp] = React.useState(false);
   const { changeData } = useContext(UserContext);
 
@@ -38,18 +39,15 @@ export const GroupCard = ({
 
   const joinRoom = () => {
     let data = {
-     
-      room : 1004213,
+      userName : userName,
+      room: 2,
       roomName: "test",
       users: 50,
     };
     try {
       socket.emit(
         "joinRoom",
-        userName,
-        data.room,
-        data.roomName,
-        data.users,
+        data,
         (response) => {
           response.status === "success"
             ? changeData(userName, data.room, data.roomName, data.users)
@@ -81,18 +79,25 @@ export const GroupCard = ({
       {showPopUp && (
         <Overlay>
           <div className="sendGroup-content">
-            <input
-              type="text"
-              placeholder="UserName"
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            {status === "private" && (
+            <div className="sendGroup-header">
+              <IoMdCloseCircleOutline className="modal-icon" onClick={changePopUp} />
+            </div>
+            <div className="sendGroup-Form">
               <input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setInputPassword(e.target.value)}
+                type="text"
+                autoFocus
+                placeholder="UserName"
+                onChange={(e) => setUserName(e.target.value)}
               />
-            )}
+              {status === "private" && (
+                <input
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setInputPassword(e.target.value)}
+                />
+              )}
+            </div>
+
             <button onClick={joinRoom}>go to Room</button>
           </div>
         </Overlay>
