@@ -9,6 +9,7 @@ export const ChatRoom = () => {
   const { user } = React.useContext(UserContext);
 
   const [chatLoad, setChatLoad] = React.useState(true);
+  const [messageList, setMessageList] = React.useState([]);
 
   const [message, setMessage] = React.useState("");
 
@@ -18,7 +19,7 @@ export const ChatRoom = () => {
       sendMessage();
     }
   };
-  
+
   const sendMessage = () => {
     if (message.trim() !== "") {
       const uniqueId = uuid();
@@ -35,12 +36,13 @@ export const ChatRoom = () => {
       };
       socket.emit("sendMessage", data);
       setMessage("");
+      setMessageList((item) => [...item, data]);
     }
   };
 
   React.useEffect(() => {
     socket.on("received", (data) => {
-      console.log(data);
+      setMessageList((item) => [...item, data]);
     });
   }, [socket]);
 
@@ -55,12 +57,35 @@ export const ChatRoom = () => {
               <p title="status">{user.users}/100</p>
             </div>
           </div>
-          <div className="ChatRoom-body"></div>
+          <div className="ChatRoom-body">
+            {messageList.map((item) => {
+              if (item.user === user.name) {
+                return (
+                  <div className="user-message" key={item.id}>
+                    <div className="userMessage-content">
+                      <p title="message">{item.message}</p>
+                      <p title="time">{item.time}</p>
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="other-message" key={item.id}>
+                    <div className="otherMessage-content">
+                      <p title="message">{item.message}</p>
+                      <p title="time">{item.time}</p>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </div>
           <div className="ChatRoom-Footer">
             <input
               autoFocus={true}
               name="message"
               type="text"
+              autoComplete="off"
               placeholder="Type a message..."
               onChange={(e) => setMessage(e.target.value)}
               value={message}

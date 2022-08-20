@@ -31,6 +31,53 @@
     }
   }
 
+  .ChatRoom-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 1em;
+    gap: 0.5px;
+
+    .user-message {
+      @extend %content-message;
+      justify-content: flex-end;
+
+      .userMessage-content {
+        @extend %user-message;
+        background-color: #0a5a79;
+        color: $secondary-color;
+
+        p[title="message"] {
+          @extend %message-props;
+        }
+
+        p[title="time"] {
+          @extend %time-props;
+        }
+      }
+    }
+
+    .other-message {
+      @extend %content-message;
+      justify-content: flex-start;
+
+      .otherMessage-content {
+        @extend %user-message;
+        background-color: $secondary-color;
+        color:#0a5a79;
+
+        p[title="message"] {
+          @extend %message-props;
+        }
+
+        p[title="time"] {
+          @extend %time-props;
+        }
+      }
+    }
+  }
+
   .ChatRoom-Footer {
     height: 51px;
     display: flex;

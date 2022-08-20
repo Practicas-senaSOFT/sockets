@@ -33,7 +33,7 @@ io.on("connection", (socket) => {
     socket.join(data.room);
   });
 
-  socket.on("sendMessage", (data) => {
+  socket.on("sendMessage", (data ) => {
     socket.to(data.room).emit("received" , data);
   });
 });
